@@ -1,15 +1,58 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Myapp</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>StoGram</title>
+  <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+<!--Navigation Bar-->
+<nav class="navbar navbar-light bg-white d-flex">
+  <div class="container">
+    <div class="logo">
+      <a class="navbar-brand" href="#">
+        <%= image_tag("https://sun9-66.userapi.com/ikSdJu1cEZMh-0fMq7uYkXKx2_k3PZWR8r4zlQ/dnvb_AXJWyc.jpg", :alt => "rss feed") %>
+        Грам
+      </a>
+    </div>
+    <div class="m-auto">
+      <form class="form-inline search-form">
+        <input class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
+      </form>
+    </div>
+    <div class="user-section">
+      <a><i class="fa fa-compass"></i></a>
+      <a><i class="fa fa-heart"></i></a>
+      <% if user_signed_in? %>
+        <a href="<%= user_path(current_user)%>">
+          <i class="fa fa-user-circle"></i>
+        </a>
+        <a href="<%= destroy_user_session_path%>" data-method="delete">
+          <i class="fa fa-sign-out"></i>
+        </a>
+      <% else %>
+        <a href="<%= new_user_session_path%>">
+          <i class="fa fa-sign-in"></i>
+        </a>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<!--Main content-->
+<main class="container" style="min-height: 500px;">
+  <%= yield %>
+</main>
+
+<!--Footer-->
+<footer class="container1 footer">
+
+    <p>
+      StoGram <i class="fa fa-beer" aria-hidden="true"></i> 2020
+    </p>
+</footer>
+</body>
 </html>

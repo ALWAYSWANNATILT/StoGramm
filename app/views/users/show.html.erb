@@ -1,19 +1,41 @@
-<p id="notice"><%= notice %></p>
+<div class="user-profile">
+  <div class="profile row">
+    <div class="col-md-4 avatar">
+      <div class="wrapper">
+        <% if current_user.avatar.attached? %>
+          <%= image_tag current_user.avatar%>
+        <%end %>
+      </div>
+    </div>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @user.firstname %>
-</p>
+    <div class="col-md-8 basic-info">
+      <div class="user-wrapper">
+        <h2 class="username"><%= current_user.username %></h2>
+        <a class="edit-profile" href="<%= edit_user_path(current_user) %>">
+          <button>Edit Profile</button>
+        </a>
+      </div>
+      <ul class="posts">
+        <li><span><%= @posts.count %></span> posts</li>
+      </ul>
+      <h2 class="name"><%= current_user.name %></h2>
+      <%=link_to current_user.website, current_user.website, class:  'website' %>
+    </div>
+  </div>
+  <div class="user-tabs">
+    <a class="tab active" href="">
+      <i class="fa fa-th"></i>
+      POSTS
+    </a>
 
-<p>
-  <strong>Lastname:</strong>
-  <%= @user.lastname %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+  </div>
+  <div class="user-images">
+    <% @posts.each do |post|%>
+      <div class="wrapper">
+        <%=link_to post_path(post) do %>
+          <%=image_tag post.image %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

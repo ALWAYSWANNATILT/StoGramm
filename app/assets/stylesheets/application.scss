@@ -1,0 +1,55 @@
+@import "bootstrap";
+@import "font-awesome";
+@import "users";
+@import "posts";
+@import "home";
+
+
+
+.container{
+  max-width: 1000px;
+}
+
+body{
+  background-color: #F7F7F7;
+}
+.navbar{
+  border-bottom: 1px solid rgba(0,0,0,1);
+}
+
+.user-section{
+  a{
+    padding-left: 15px;
+  }
+
+  i.fas{
+    font-size: 22px;
+    color: #000000d4;
+  }
+  i.fa{
+    font-size: 22px;
+    color: #000000d4;
+  }
+
+}
+.search-form{
+  input{
+    font-size: 13px;
+    text-align: center;
+  }
+}
+.footer{
+  border-top: 3px solid #dbdbdb;
+  font-size: 30px;
+  padding-top: 10px;
+  text-align: center;
+
+  .container1{
+    max-width: 100%;
+    border-top: 3px solid #dbdbdb;
+  }
+  p{
+    color: #2E2F30;
+    text-align: center;
+  }
+}
