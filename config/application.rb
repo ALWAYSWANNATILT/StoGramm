@@ -14,10 +14,11 @@ module Insta
         :address => 'smtp.gmail.com',
         :domain => 'mail.google.com',
         :port => 587,
-        :user_name => ENV['GMAIL_MAIL'],
-        :password => ENV['GMAIL_PASSWORD'],
+        :user_name => 'anking1337@gmail.com',
+        :password => 'ArtyomNovikevich',
         :authentication => 'login',
-        :enable_starttls_auto => true }
+        :enable_starttls_auto => true
+    }
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

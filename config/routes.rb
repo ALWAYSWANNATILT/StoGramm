@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users
-  root to: "users#index"
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  get 'home/index'
+
+  root to: 'home#index'
+  resources :users, only: [:show, :edit, :update] do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :posts, only: [:new, :create, :show, :destroy]
+  resources :follows, only: [:create, :destroy]
+
 end

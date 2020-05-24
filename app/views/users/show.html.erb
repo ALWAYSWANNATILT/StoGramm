@@ -1,19 +1,53 @@
-<p id="notice"><%= notice %></p>
+<div class="user-profile">
+  <div class="profile row">
+    <div class="col-md-4 avatar">
+      <div class="wrapper">
+        <% if @user.avatar.attached? %>
+          <%= image_tag @user.avatar%>
+        <%end %>
+      </div>
+    </div>
 
-<p>
-  <strong>Firstname:</strong>
-  <%= @user.firstname %>
-</p>
-
-<p>
-  <strong>Lastname:</strong>
-  <%= @user.lastname %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+    <div class="col-md-8 basic-info">
+      <div class="user-wrapper">
+        <h2 class="username"><%= @user.username %></h2>
+        <% if @user.id == current_user.id %>
+          <a class="edit-profile" href="<%= edit_user_path(@user) %>">
+            <button>Edit Profile</button>
+          </a>
+        <% else %>
+          <% if !current_user.following?(@user)%>
+            <a class="edit-profile">
+              <%= button_to "Follow", follows_path(user_id: @user.id), method: :post %>
+            </a>
+          <% else %>
+            <a class="edit-profile">
+              <%= button_to "Unfollow", follow_path(user_id: @user.id), method: :delete %>
+            </a>
+          <% end %>
+        <% end %>
+      </div>
+      <ul class="profile-stats row">
+        <li><span><%= @user.followers.count %></span> followers</li>
+        <li><span><%= @posts.count %></span> posts</li>
+      </ul>
+      <h2 class="name"><%= @user.name %></h2>
+      <%=link_to @user.website, @user.website, class:  'website' %>
+    </div>
+  </div>
+  <div class="user-tabs">
+    <a class="tab active" href="">
+      <i class="fa fa-th"></i>
+      POSTS
+    </a>
+  </div>
+  <div class="user-images">
+    <% @posts.each do |post|%>
+      <div class="wrapper">
+        <%=link_to post_path(post) do %>
+          <%=image_tag post.image %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
