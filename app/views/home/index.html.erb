@@ -34,6 +34,27 @@
           <div class="description">
             <%= post.description %>
           </div>
+  <% @comments = post.comments.page(params[:page]).per(3) %>
+          <% if @comments.count >= 1 %>
+            <div class="comments">
+              <% @comments.each do |comment| %>
+                <div class="comment">
+                  <strong><%= comment.username %></strong> <%= comment.content %>
+                </div>
+              <% end %>
+              <% if @comments.count == 3 %>
+                <%= link_to "All comments...", post_path(post) %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="add-comment">
+            <%= form_for Comment.new do |f| %>
+              <%= f.text_field :content, placeholder: "Add a comment..." %>
+              <%= f.submit 'Send', class: 'btn btn-comment' %>
+              <%= f.text_field :post_id, value: post.id, class:'d-none'%>
+              <%= f.text_field :username, value: current_user.username, class:'d-none'%>
+            <% end %>
+          </div>
         </section>
       <%end %>
     <% end %>

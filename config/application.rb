@@ -14,8 +14,8 @@ module Insta
         :address => 'smtp.gmail.com',
         :domain => 'mail.google.com',
         :port => 587,
-        :user_name => 'anking1337@gmail.com',
-        :password => 'ArtyomNovikevich',
+        :user_name => ENV['GMAIL_MAIL'],
+        :password => ENV['GMAIL_PASSWORD'],
         :authentication => 'login',
         :enable_starttls_auto => true
     }

@@ -21,5 +21,25 @@
         <%= link_to 'Remove', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
     </div>
+    <div class="comments">
+      <% @comments = @post.comments %>
+      <% if @comments %>
+        <div class="scroll">
+          <% @comments.each do |comment| %>
+            <div class="comment">
+              <strong><%= comment.username %></strong> <%= comment.content %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="add-comment">
+      <%= form_for Comment.new do |f| %>
+        <%= f.text_field :content, placeholder: "Add a comment..." %>
+        <%= f.submit 'Send', class: 'btn btn-comment' %>
+        <%= f.text_field :post_id, value: @post.id, class:'d-none'%>
+        <%= f.text_field :username, value: current_user.username, class:'d-none'%>
+      <% end %>
+    </div>
   </div>
 </div>
