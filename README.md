@@ -1,9 +1,9 @@
 # README
 BSTU
 2 kurs
-Web/TRPO.
-web 2-5 лабораторные. 
-TRPO 2-3 лабораторные.
+Web/TRPO.<br>
+web 2-5 лабораторные.<br> 
+TRPO 2-3 лабораторные.<br>
 
 Have a nice day! ☼
 
